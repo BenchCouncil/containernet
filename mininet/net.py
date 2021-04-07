@@ -575,7 +575,7 @@ class Mininet( object ):
     def build( self ):
         "Build mininet."
         if self.topo:
-            self.buildFromTopo( self.topo )
+            Mininet.buildFromTopo(self, self.topo)
         if self.inNamespace:
             self.configureControlNetwork()
         info( '*** Configuring hosts\n' )
@@ -1048,9 +1048,13 @@ class Containernet( Mininet ):
     def __init__(self, topo=None, dimage=None, **params):
         # call original Mininet.__init__ with build=False
         # still provide any topo objects and init node lists
-        Mininet.__init__(self, build=False, **params)
-        self.SAPswitches = dict()
         if topo and dimage:
+            normal_build = False
+        else:
+            normal_build = True
+        Mininet.__init__(self, topo=topo, build=normal_build, **params)
+        self.SAPswitches = dict()
+        if not normal_build:
             self.buildFromTopo(topo, dimage)
 
     def addDocker( self, name, cls=Docker, **params ):
