@@ -229,7 +229,7 @@ function of {
     fi
     # was: git clone git://openflowswitch.org/openflow.git
     # Use our own fork on github for now:
-    git clone https://github.com/mininet/openflow.git
+    git clone git://github.com/mininet/openflow.git
     cd $BUILD_DIR/openflow
 
     # Patch controller to handle more than 16 switches
@@ -256,7 +256,7 @@ function of13 {
     fi
 
     if [ ! -d "ofsoftswitch13" ]; then
-        git clone https://github.com/CPqD/ofsoftswitch13.git
+        git clone git://github.com/CPqD/ofsoftswitch13.git
         if [[ -n "$OF13_SWITCH_REV" ]]; then
             cd ofsoftswitch13
             git checkout ${OF13_SWITCH_REV}
@@ -266,7 +266,7 @@ function of13 {
 
     # Install netbee
     if [ ! -d "netbee" ]; then
-        git clone https://github.com/netgroup-polito/netbee.git
+        git clone git://github.com/netgroup-polito/netbee.git
     fi
     cd netbee/src
     cmake .
@@ -313,7 +313,7 @@ function install_wireshark {
 
     echo "Cloning LoxiGen and building openflow.lua dissector"
     cd $BUILD_DIR
-    git clone https://github.com/floodlight/loxigen.git
+    git clone git://github.com/floodlight/loxigen.git
     cd loxigen
     make wireshark
 
@@ -558,7 +558,7 @@ function nox {
 
     # Fetch NOX destiny
     cd $BUILD_DIR/
-    git clone https://github.com/noxrepo/nox-classic.git noxcore
+    git clone git://github.com/noxrepo/nox-classic.git noxcore
     cd noxcore
     if ! git checkout -b destiny remotes/origin/destiny ; then
         echo "Did not check out a new destiny branch - assuming current branch is destiny"
@@ -604,7 +604,7 @@ function nox13 {
 
     # Fetch NOX destiny
     cd $BUILD_DIR/
-    git clone https://github.com/CPqD/nox13oflib.git
+    git clone git://github.com/CPqD/nox13oflib.git
     cd nox13oflib
 
     # Build
@@ -625,7 +625,7 @@ function nox13 {
 function pox {
     echo "Installing POX into $BUILD_DIR/pox..."
     cd $BUILD_DIR
-    git clone https://github.com/noxrepo/pox.git
+    git clone git://github.com/noxrepo/pox.git
 }
 
 # Install OFtest
